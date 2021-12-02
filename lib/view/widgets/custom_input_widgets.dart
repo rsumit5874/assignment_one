@@ -28,8 +28,8 @@ class CustomTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: 10.h,
         ),
         Text(
           headingText,
@@ -41,7 +41,7 @@ class CustomTextField extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2.r),
-            border: Border.all(color: Colors.blue.shade900, width: 2),
+            border: Border.all(color: Colors.blue.shade900, width: 2.w),
           ),
           width: MediaQuery.of(context).size.width,
           child: TextField(
@@ -56,7 +56,7 @@ class CustomTextField extends StatelessWidget {
             decoration: InputDecoration(
               counterText: '',
               contentPadding:
-                  const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.h),
               prefixIcon: prefixIcon,
               border: InputBorder.none,
               hintText: hintText,
@@ -94,8 +94,8 @@ class CustomDropdownTextField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: 10.h,
         ),
         Text(
           headingText,
@@ -107,7 +107,7 @@ class CustomDropdownTextField extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2.r),
-            border: Border.all(color: Colors.blue.shade900, width: 2),
+            border: Border.all(color: Colors.blue.shade900, width: 2.w),
           ),
           width: MediaQuery.of(context).size.width,
           child: TextField(
@@ -122,7 +122,7 @@ class CustomDropdownTextField extends StatelessWidget {
             decoration: InputDecoration(
               counterText: '',
               contentPadding:
-                  const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+                  EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
               suffixIcon: suffixIcon,
               border: InputBorder.none,
               hintText: hintText,
@@ -160,20 +160,20 @@ class CustomPasswordField extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const SizedBox(
-          height: 5,
+        SizedBox(
+          height: 5.h,
         ),
         Text(
           headingText,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        const SizedBox(
-          height: 5,
+        SizedBox(
+          height: 5.h,
         ),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2.r),
-            border: Border.all(color: Colors.blue.shade900, width: 2),
+            border: Border.all(color: Colors.blue.shade900, width: 2.w),
           ),
           width: MediaQuery.of(context).size.width,
           child: TextField(

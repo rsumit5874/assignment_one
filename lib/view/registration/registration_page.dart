@@ -1,3 +1,4 @@
+import 'package:assignment_one/view/registration/your_info_page.dart';
 import 'package:assignment_one/view/widgets/custom_button.dart';
 import 'package:assignment_one/view/widgets/custom_input_widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -143,7 +144,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     height: 10.h,
                   ),
                   NextButton(onPressed: () {
-                    //info page
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (context) => const YourInfo()));
                   })
                 ],
               ),
