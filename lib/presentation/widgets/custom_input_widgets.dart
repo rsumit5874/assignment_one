@@ -11,10 +11,12 @@ class CustomTextField extends StatelessWidget {
   final Function(String) onChange;
   final Function(String) onSubmit;
   final bool numberField;
+  final TextEditingController? controller;
 
   const CustomTextField({
     Key? key,
     required this.headingText,
+    this.controller,
     required this.hintText,
     required this.prefixIcon,
     required this.inputType,
@@ -41,7 +43,7 @@ class CustomTextField extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2.r),
-            border: Border.all(color: Colors.blue.shade900, width: 2.w),
+            border: Border.all(color: Colors.blue.shade900, width: 1.w),
           ),
           width: MediaQuery.of(context).size.width,
           child: TextField(
@@ -56,12 +58,12 @@ class CustomTextField extends StatelessWidget {
             decoration: InputDecoration(
               counterText: '',
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.h),
+                  EdgeInsets.symmetric(vertical: 16.h, horizontal: 8.h),
               prefixIcon: prefixIcon,
               border: InputBorder.none,
               hintText: hintText,
             ),
-            controller: TextEditingController(),
+            controller: controller,
           ),
         ),
       ],
@@ -77,6 +79,7 @@ class CustomDropdownTextField extends StatelessWidget {
   final Function(String) onChange;
   final Function(String) onSubmit;
   final bool numberField;
+  final TextEditingController? controller;
 
   const CustomDropdownTextField({
     Key? key,
@@ -87,6 +90,7 @@ class CustomDropdownTextField extends StatelessWidget {
     required this.onChange,
     required this.onSubmit,
     this.numberField = false,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -101,13 +105,13 @@ class CustomDropdownTextField extends StatelessWidget {
           headingText,
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
-        const SizedBox(
-          height: 10,
+        SizedBox(
+          height: 10.h,
         ),
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2.r),
-            border: Border.all(color: Colors.blue.shade900, width: 2.w),
+            border: Border.all(color: Colors.blue.shade900, width: 1.w),
           ),
           width: MediaQuery.of(context).size.width,
           child: TextField(
@@ -122,12 +126,12 @@ class CustomDropdownTextField extends StatelessWidget {
             decoration: InputDecoration(
               counterText: '',
               contentPadding:
-                  EdgeInsets.symmetric(vertical: 12.h, horizontal: 8.w),
+                  EdgeInsets.symmetric(vertical: 16.h, horizontal: 8.w),
               suffixIcon: suffixIcon,
               border: InputBorder.none,
               hintText: hintText,
             ),
-            controller: TextEditingController(),
+            controller: controller,
           ),
         ),
       ],
@@ -143,6 +147,7 @@ class CustomPasswordField extends StatelessWidget {
   final Function(String) onSubmit;
   final Function() showPassword;
   final bool passwordEnable;
+  final TextEditingController? controller;
 
   const CustomPasswordField({
     Key? key,
@@ -153,6 +158,7 @@ class CustomPasswordField extends StatelessWidget {
     required this.onSubmit,
     required this.showPassword,
     required this.passwordEnable,
+    this.controller,
   }) : super(key: key);
 
   @override
@@ -173,7 +179,7 @@ class CustomPasswordField extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(2.r),
-            border: Border.all(color: Colors.blue.shade900, width: 2.w),
+            border: Border.all(color: Colors.blue.shade900, width: 1.w),
           ),
           width: MediaQuery.of(context).size.width,
           child: TextField(
@@ -186,6 +192,8 @@ class CustomPasswordField extends StatelessWidget {
             autofocus: false,
             onChanged: onChange,
             decoration: InputDecoration(
+              contentPadding:
+                  EdgeInsets.symmetric(vertical: 16.h, horizontal: 8.w),
               suffixIcon: IconButton(
                 icon: Icon(
                   // Based on passwordVisible state choose the icon
@@ -199,7 +207,7 @@ class CustomPasswordField extends StatelessWidget {
               border: InputBorder.none,
               hintText: hintText,
             ),
-            controller: TextEditingController(),
+            controller: controller,
           ),
         ),
       ],

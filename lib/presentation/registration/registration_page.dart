@@ -1,20 +1,23 @@
-import 'package:assignment_one/view/registration/your_info_page.dart';
-import 'package:assignment_one/view/widgets/custom_button.dart';
-import 'package:assignment_one/view/widgets/custom_input_widgets.dart';
+import 'package:assignment_one/model/user_model.dart';
+import 'package:assignment_one/presentation/registration/your_info_page.dart';
+import 'package:assignment_one/presentation/widgets/custom_button.dart';
+import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
+import 'package:assignment_one/view_models/registration_page_view_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 
-class RegistrationPage extends StatefulWidget {
-  const RegistrationPage({Key? key}) : super(key: key);
+class RegistrationPage extends StatelessWidget {
+  RegistrationPage({Key? key}) : super(key: key);
 
-  @override
-  _RegistrationPageState createState() => _RegistrationPageState();
-}
 
-class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(RegistrationViewModel());
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -57,11 +60,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     ),
                   ),
                   CustomTextField(
+                    numberField: false,
                     key: const Key('first-name'),
                     prefixIcon: const Icon(Icons.ten_k_rounded),
                     headingText: 'First Name*',
                     hintText: 'Enter your first name',
-                    onChange: (value) {},
+                    onChange: (value) {
+                      controller.firstName(value);
+                    },
                     onSubmit: (value) {},
                     inputType: TextInputType.text,
                   ),
@@ -71,7 +77,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     prefixIcon: const Icon(Icons.ten_k_rounded),
                     headingText: 'Last Name*',
                     hintText: 'Enter your last name',
-                    onChange: (value) {},
+                    onChange: (value) {
+                      controller.lastname(value);
+                    },
                     onSubmit: (value) {},
                   ),
                   CustomTextField(
@@ -105,21 +113,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         value: 1,
                         groupValue: 1,
                         activeColor: Colors.blue.shade900,
-                        onChanged: (value) {
-                          setState(() {});
-                        },
+                        onChanged: (value) {},
                       ),
                       const Text('Female'),
                       Radio(
                         value: 2,
                         groupValue: 1,
                         activeColor: Colors.blue.shade900,
-                        onChanged: (value) {
-                          setState(() {
-                            // _radioSelected = value;
-                            // _radioVal = 'female';
-                          });
-                        },
+                        onChanged: (value) {},
                       )
                     ],
                   ),

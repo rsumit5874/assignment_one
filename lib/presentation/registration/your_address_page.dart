@@ -1,17 +1,12 @@
-import 'package:assignment_one/view/widgets/custom_button.dart';
-import 'package:assignment_one/view/widgets/custom_input_widgets.dart';
+import 'package:assignment_one/presentation/widgets/custom_button.dart';
+import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class AddressPage extends StatefulWidget {
+class AddressPage extends StatelessWidget {
   const AddressPage({Key? key}) : super(key: key);
 
-  @override
-  _AddressPageState createState() => _AddressPageState();
-}
-
-class _AddressPageState extends State<AddressPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

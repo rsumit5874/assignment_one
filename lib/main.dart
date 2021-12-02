@@ -1,6 +1,7 @@
-import 'package:assignment_one/view/registration/registration_page.dart';
+import 'package:assignment_one/presentation/registration/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class _MyAppState extends State<MyApp> {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: () {
-        return const MaterialApp(
+        return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.system,
           home: RegistrationPage(),

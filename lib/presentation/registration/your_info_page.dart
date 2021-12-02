@@ -1,18 +1,13 @@
-import 'package:assignment_one/view/registration/your_address_page.dart';
-import 'package:assignment_one/view/widgets/custom_button.dart';
-import 'package:assignment_one/view/widgets/custom_input_widgets.dart';
+import 'package:assignment_one/presentation/registration/your_address_page.dart';
+import 'package:assignment_one/presentation/widgets/custom_button.dart';
+import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class YourInfo extends StatefulWidget {
+class YourInfo extends StatelessWidget {
   const YourInfo({Key? key}) : super(key: key);
 
-  @override
-  _YourInfoState createState() => _YourInfoState();
-}
-
-class _YourInfoState extends State<YourInfo> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,7 +121,6 @@ class _YourInfoState extends State<YourInfo> {
                     },
                     onPreviousPressed: () {
                       Navigator.of(context).pop();
-
                     },
                   )
                 ],
