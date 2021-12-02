@@ -1,3 +1,4 @@
+import 'package:assignment_one/view/registration/your_address_page.dart';
 import 'package:assignment_one/view/widgets/custom_button.dart';
 import 'package:assignment_one/view/widgets/custom_input_widgets.dart';
 import 'package:flutter/cupertino.dart';
@@ -117,10 +118,16 @@ class _YourInfoState extends State<YourInfo> {
                   SizedBox(
                     height: 20.h,
                   ),
-                  PreviousNextButton(
+                  AppButtonTwo(
                     key: const Key('previous-next-button'),
-                    onNextPressed: () {},
-                    onPreviousPressed: () {},
+                    onNextPressed: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => const AddressPage()));
+                    },
+                    onPreviousPressed: () {
+                      Navigator.of(context).pop();
+
+                    },
                   )
                 ],
               ),

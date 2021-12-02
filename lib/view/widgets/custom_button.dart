@@ -2,10 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class NextButton extends StatelessWidget {
+class AppButtonOne extends StatelessWidget {
   final Function() onPressed;
+  final String buttomTitle;
 
-  const NextButton({Key? key, required this.onPressed}) : super(key: key);
+  const AppButtonOne(
+      {Key? key, required this.onPressed, required this.buttomTitle})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,17 +18,17 @@ class NextButton extends StatelessWidget {
         color: Colors.blue.shade900,
         onPressed: onPressed,
         child: Text(
-          'Next',
+          buttomTitle,
           style: TextStyle(color: Colors.white, fontSize: 16.sp),
         ));
   }
 }
 
-class PreviousNextButton extends StatelessWidget {
+class AppButtonTwo extends StatelessWidget {
   final Function() onPreviousPressed;
   final Function() onNextPressed;
 
-  const PreviousNextButton(
+  const AppButtonTwo(
       {Key? key, required this.onNextPressed, required this.onPreviousPressed})
       : super(key: key);
 

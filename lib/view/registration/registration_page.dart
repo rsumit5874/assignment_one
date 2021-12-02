@@ -143,10 +143,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                   SizedBox(
                     height: 10.h,
                   ),
-                  NextButton(onPressed: () {
-                    Navigator.of(context).push(
-                        MaterialPageRoute(builder: (context) => const YourInfo()));
-                  })
+                  AppButtonOne(
+                      buttomTitle: 'Next',
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) => const YourInfo()));
+                      })
                 ],
               ),
             ),
