@@ -1,4 +1,3 @@
-import 'package:assignment_one/model/user_model.dart';
 import 'package:assignment_one/view/registration/your_info_page.dart';
 import 'package:assignment_one/view/widgets/custom_button.dart';
 import 'package:assignment_one/view/widgets/custom_input_widgets.dart';
@@ -47,12 +46,14 @@ class _RegistrationPageState extends State<RegistrationPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Align(
+                  Align(
                     alignment: Alignment.topCenter,
                     child: CircleAvatar(
                       backgroundColor: Colors.grey,
                       radius: 40,
-                      child: Icon(Icons.add),
+                      child: IconButton(
+                          onPressed: () {},
+                          icon: const Icon(CupertinoIcons.add)),
                     ),
                   ),
                   CustomTextField(
