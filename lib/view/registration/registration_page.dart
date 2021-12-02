@@ -1,3 +1,4 @@
+import 'package:assignment_one/model/user_model.dart';
 import 'package:assignment_one/view/registration/your_info_page.dart';
 import 'package:assignment_one/view/widgets/custom_button.dart';
 import 'package:assignment_one/view/widgets/custom_input_widgets.dart';
