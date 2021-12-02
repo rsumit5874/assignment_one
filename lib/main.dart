@@ -1,3 +1,4 @@
+import 'package:assignment_one/view/registration/registration_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -21,6 +22,7 @@ class _MyAppState extends State<MyApp> {
         return const MaterialApp(
           debugShowCheckedModeBanner: false,
           themeMode: ThemeMode.system,
+          home: RegistrationPage(),
         );
       },
     );
