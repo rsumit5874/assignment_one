@@ -13,9 +13,12 @@ class RegistrationPageController extends GetxController {
       confirmPasswordController,
       phoneNumberController;
 
-  var isPassWord = false.obs;
 
+  var isPassWord = false.obs;
   showPass(bool value) => isPassWord.value = value;
+
+  var selectedRadio = 1.obs;
+  switchRadioButton(int value) => selectedRadio.value = value;
 
   @override
   void onInit() {

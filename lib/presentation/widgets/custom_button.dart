@@ -62,3 +62,35 @@ class AppButtonTwo extends StatelessWidget {
     );
   }
 }
+
+class CustomRadioButton extends StatelessWidget {
+  final int selectedValue;
+  final Function(dynamic) onPressed;
+
+  const CustomRadioButton(
+      {Key? key, required this.onPressed, required this.selectedValue})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        const Text('Male'),
+        Radio(
+          value: 1,
+          groupValue: selectedValue,
+          activeColor: Colors.blue.shade900,
+          onChanged: onPressed,
+        ),
+        const Text('Female'),
+        Radio(
+          value: 2,
+          groupValue: selectedValue,
+          activeColor: Colors.blue.shade900,
+          onChanged: onPressed,
+        )
+      ],
+    );
+  }
+}

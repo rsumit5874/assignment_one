@@ -129,24 +129,18 @@ class RegistrationPage extends GetView<RegistrationPageController> {
                   ),
                   const Text('Gender',
                       style: TextStyle(fontWeight: FontWeight.bold)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      const Text('Male'),
-                      Radio(
-                        value: 1,
-                        groupValue: 1,
-                        activeColor: Colors.blue.shade900,
-                        onChanged: (value) {},
-                      ),
-                      const Text('Female'),
-                      Radio(
-                        value: 2,
-                        groupValue: 1,
-                        activeColor: Colors.blue.shade900,
-                        onChanged: (value) {},
-                      )
-                    ],
+                  Obx(
+                    () => CustomRadioButton(
+                      key: const Key('gender-radio-button'),
+                      onPressed: (value) {
+                        if (controller.selectedRadio.value == 1) {
+                          controller.switchRadioButton(2);
+                        } else {
+                          controller.switchRadioButton(1);
+                        }
+                      },
+                      selectedValue: controller.selectedRadio.value,
+                    ),
                   ),
                   Obx(
                     () => CustomPasswordField(
