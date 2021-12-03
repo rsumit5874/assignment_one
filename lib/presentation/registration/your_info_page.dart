@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
 class YourInfo extends GetView<YourInfo> {
@@ -26,7 +27,7 @@ class YourInfo extends GetView<YourInfo> {
             child: IconButton(
               icon: const Icon(Icons.arrow_back, color: Colors.black),
               onPressed: () {
-                Navigator.of(context).pop();
+                Get.off(context);
               },
             ),
           ),
@@ -42,90 +43,130 @@ class YourInfo extends GetView<YourInfo> {
           ),
         ),
         resizeToAvoidBottomInset: true,
-        body: SafeArea(
+        body: GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
           child: SingleChildScrollView(
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 30.w, vertical: 20.h),
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Educational Info',
-                    style:
-                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-                  ),
-                  CustomDropdownTextField(
-                    key: const Key('education'),
-                    listItem: qualification,
-                    headingText: 'Education',
-                    hintText: 'Select your qualification',
-                    onSelect: (value) {},
-                  ),
-                  CustomDropdownTextField(
-                    key: const Key('passing_year'),
-                    listItem: Utils.getList(),
-                    headingText: 'Year of passing*',
-                    hintText: 'Enter year of passing',
-                    onSelect: (value) {},
-                  ),
-                  CustomTextField(
-                    key: const Key('grade'),
-                    controller: TextEditingController(),
-                    inputType: TextInputType.number,
-                    prefixIcon: const Icon(Icons.ten_k_rounded),
-                    headingText: 'Grade',
-                    hintText: 'Enter your grade OR percentage ',
-                    onValidate: (value) {},
-                    onSave: (String) {},
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  Text(
-                    'Professional Info',
-                    style:
-                        TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
-                  ),
-                  CustomTextField(
-                    key: const Key('experience'),
-                    controller: TextEditingController(),
-                    inputType: TextInputType.number,
-                    prefixIcon: const Icon(Icons.ten_k_rounded),
-                    headingText: 'Experience*',
-                    hintText: 'Enter the year of experience',
-                    onValidate: (value) {},
-                    onSave: (value) {},
-                  ),
-                  CustomDropdownTextField(
-                    key: const Key('designation'),
-                    listItem: designation,
-                    headingText: 'Designation*',
-                    hintText: 'Select designation',
-                    onSelect: (value) {},
-                  ),
-                  CustomDropdownTextField(
-                    key: const Key('domain'),
-                    listItem: domain,
-                    headingText: 'Domain*',
-                    hintText: 'Select your domain',
-                    onSelect: (value) {},
-                  ),
-                  SizedBox(
-                    height: 20.h,
-                  ),
-                  AppButtonTwo(
-                    key: const Key('previous-next-button'),
-                    onNextPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => const AddressPage()));
-                    },
-                    onPreviousPressed: () {
-                      Navigator.of(context).pop();
-                    },
-                  )
-                ],
+              child: Form(
+                key: controller.yourInfoFormKey,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Educational Info',
+                      style: TextStyle(
+                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    ),
+                    CustomDropdownTextField(
+                      key: const Key('education'),
+                      listItem: qualification,
+                      headingText: 'Education',
+                      hintText: 'Select your qualification',
+                      controller: controller.educationController,
+                      onSelect: (value) {
+                        controller.educationController.text = value;
+                      },
+                      onValidate: (value) {
+                        if (value.toString().isNotEmpty) {
+                          return null;
+                        } else {
+                          return 'Education field is required';
+                        }
+                      },
+                    ),
+                    CustomDropdownTextField(
+                      key: const Key('passing_year'),
+                      listItem: Utils.getList(),
+                      headingText: 'Year of passing*',
+                      hintText: 'Enter year of passing',
+                      controller: controller.yearOfPassingController,
+                      onValidate: (value) {
+                        if (value.toString().isNotEmpty) {
+                          return null;
+                        } else {
+                          return 'Please select passing year';
+                        }
+                      },
+                      onSelect: (value) {
+                        controller.yearOfPassingController.text = value;
+                      },
+                    ),
+                    CustomTextField(
+                      key: const Key('grade'),
+                      controller: controller.gradeController,
+                      inputType: TextInputType.number,
+                      prefixIcon: const Icon(Icons.ten_k_rounded),
+                      headingText: 'Grade',
+                      hintText: 'Enter your grade OR percentage ',
+                      onValidate: (value) {},
+                      onSave: (value) {},
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Text(
+                      'Professional Info',
+                      style: TextStyle(
+                          fontSize: 18.sp, fontWeight: FontWeight.bold),
+                    ),
+                    CustomTextField(
+                      key: const Key('experience'),
+                      controller: controller.experienceController,
+                      inputType: TextInputType.number,
+                      prefixIcon: const Icon(Icons.ten_k_rounded),
+                      headingText: 'Experience*',
+                      hintText: 'Enter the year of experience',
+                      onValidate: (value) {},
+                      onSave: (value) {},
+                    ),
+                    CustomDropdownTextField(
+                      key: const Key('designation'),
+                      listItem: designation,
+                      headingText: 'Designation*',
+                      hintText: 'Select designation',
+                      controller: controller.designationController,
+                      onSelect: (value) {
+                        controller.designationController.text = value;
+                      },
+                      onValidate: (value) {
+                        return null;
+                      },
+                    ),
+                    CustomDropdownTextField(
+                      key: const Key('domain'),
+                      listItem: domain,
+                      headingText: 'Domain*',
+                      hintText: 'Select your domain',
+                      controller: controller.domainController,
+                      onSelect: (value) {
+                        controller.domainController.text = value;
+                      },
+                      onValidate: (value) {
+                        return null;
+                      },
+                    ),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    AppButtonTwo(
+                      key: const Key('previous-next-button'),
+                      onNextPressed: () {
+                        if (controller.saveData()) {
+                          Get.to(const AddressPage());
+                        }
+                      },
+                      onPreviousPressed: () {
+                        Get.off(context);
+                      },
+                    )
+                  ],
+                ),
               ),
             ),
           ),

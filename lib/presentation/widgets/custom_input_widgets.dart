@@ -8,6 +8,7 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final Widget prefixIcon;
   final TextInputType inputType;
+  final TextInputAction? textInputAction;
   final dynamic onValidate;
   final Function(String?) onSave;
   final TextEditingController controller;
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
     required this.hintText,
     required this.prefixIcon,
     required this.inputType,
+    this.textInputAction,
     required this.onValidate,
     required this.onSave,
   }) : super(key: key);
@@ -41,10 +43,7 @@ class CustomTextField extends StatelessWidget {
         TextFormField(
           maxLines: 1,
           maxLength: inputType != TextInputType.number ? null : 10,
-          textInputAction:
-              headingText == 'Email*' || headingText == 'Confirm Password*'
-                  ? TextInputAction.done
-                  : TextInputAction.next,
+          textInputAction: textInputAction ?? TextInputAction.next,
           keyboardType: inputType,
           onSaved: onSave,
           autofocus: false,
@@ -56,7 +55,7 @@ class CustomTextField extends StatelessWidget {
             ),
             counterText: '',
             contentPadding:
-                EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.h),
+            EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.h),
             prefixIcon: prefixIcon,
             // border: InputBorder.none,
             hintText: hintText,
@@ -119,7 +118,7 @@ class CustomPasswordField extends StatelessWidget {
               borderRadius: BorderRadius.circular(5),
             ),
             contentPadding:
-                EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.w),
+            EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.w),
             suffixIcon: IconButton(
               icon: Icon(
                 // Based on passwordVisible state choose the icon
@@ -144,6 +143,7 @@ class CustomDropdownTextField extends StatelessWidget {
   final Function(String) onSelect;
   final TextEditingController? controller;
   final List<String> listItem;
+  final dynamic onValidate;
 
   const CustomDropdownTextField({
     Key? key,
@@ -151,6 +151,7 @@ class CustomDropdownTextField extends StatelessWidget {
     required this.hintText,
     required this.onSelect,
     required this.listItem,
+    required this.onValidate,
     this.controller,
   }) : super(key: key);
 
@@ -169,15 +170,18 @@ class CustomDropdownTextField extends StatelessWidget {
         SizedBox(
           height: 10.h,
         ),
-        TextField(
+        TextFormField(
           autofocus: false,
+          textInputAction: TextInputAction.done,
+          maxLines: 1,
           textAlign: TextAlign.left,
+          validator: onValidate,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
             ),
             contentPadding:
-                EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.w),
+            EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.w),
             suffixIcon: PopupMenuButton<String>(
               icon: const Icon(Icons.arrow_drop_down),
               onSelected: onSelect,
