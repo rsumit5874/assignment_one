@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter/painting.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class PermissionHandleDialog extends StatelessWidget {
   const PermissionHandleDialog({Key? key})
@@ -28,7 +29,7 @@ class PermissionHandleDialog extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('Pleas enable permission',
+            Text('Permission',
                 style: Theme.of(context).textTheme.bodyText1?.copyWith(
                       fontSize: 22,
                       fontWeight: FontWeight.bold,
@@ -37,7 +38,7 @@ class PermissionHandleDialog extends StatelessWidget {
             SizedBox(
               height: 10.h,
             ),
-            Text('Pleas allow permission manually',
+            Text('Pleas allow permission manually by clicking Open Settings',
                 key: const Key('allow-permission-manually'),
                 style: Theme.of(context).textTheme.bodyText1?.copyWith(
                       fontSize: 16,
@@ -55,23 +56,23 @@ class PermissionHandleDialog extends StatelessWidget {
                     onTap: () {
                       Navigator.pop(context);
                     },
-                    child: Text('Dismis',
+                    child: Text('Dismiss',
                         style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                            fontSize: 18,
-                            color: Colors.black,
+                            fontSize: 18.sp,
+                            color: Colors.blue.shade900,
                             fontWeight: FontWeight.w400))),
                 InkWell(
                     key: const Key('open-setting'),
                     onTap: () {
-                      // openAppSettings();
+                      openAppSettings();
                       Navigator.pop(context);
                     },
                     child: Text(
                       'Open settings',
                       style: Theme.of(context).textTheme.bodyText1?.copyWith(
-                          fontSize: 18,
-                          color: Colors.black,
-                          fontWeight: FontWeight.w400),
+                          fontSize: 18.sp,
+                          color: Colors.blue.shade900,
+                          fontWeight: FontWeight.w500),
                     )),
               ],
             )

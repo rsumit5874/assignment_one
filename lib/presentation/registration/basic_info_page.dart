@@ -14,6 +14,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class BasicInfoPage extends GetView<BasicInfoPageController> {
   const BasicInfoPage({Key? key}) : super(key: key);
@@ -66,6 +67,9 @@ class BasicInfoPage extends GetView<BasicInfoPageController> {
                           radius: 45,
                           child: GestureDetector(
                             onTap: () async {
+                              final PermissionStatus status =
+                                  await Permission.storage.request();
+                              if (status.isGranted) {
                                 final imageSrcPath = await ImagePickerUtil
                                     .instance
                                     .getCompressedImage(
@@ -75,33 +79,23 @@ class BasicInfoPage extends GetView<BasicInfoPageController> {
                                   print(imageSrcPath);
                                   controller.pickImage(imageSrcPath);
                                 }
-
-                              // final PermissionStatus status =
-                              //     await Permission.camera.request();
-                              // if (status.isGranted) {
-                              //   final imageSrcPath = await ImagePickerUtil
-                              //       .instance
-                              //       .getCompressedImage(
-                              //           source: ImageSource.gallery);
-                              //   if (imageSrcPath.isNotEmpty) {
-                              //     //show image
-                              //     controller.pickImage(imageSrcPath);
-                              //   }
-                              // } else if (status.isDenied) {
-                              //   await Permission.camera.request();
-                              // } else {
-                              //   showDialog(
-                              //       context: context,
-                              //       builder: (context) =>
-                              //           const PermissionHandleDialog());
-                              // }
+                              } else if (status.isDenied) {
+                                await Permission.camera.request();
+                              } else {
+                                showDialog(
+                                    context: context,
+                                    builder: (context) =>
+                                        const PermissionHandleDialog());
+                              }
                             },
-                            child: CircleAvatar(
-                              radius: 42.r,
-                              backgroundImage: Image.file(
-                                File(controller.profileImagePath.value),
-                                fit: BoxFit.cover,
-                              ).image,
+                            child: Obx(
+                              () => CircleAvatar(
+                                radius: 42.r,
+                                backgroundImage: Image.file(
+                                  File(controller.profileImagePath.value),
+                                  fit: BoxFit.cover,
+                                ).image,
+                              ),
                             ),
                           ),
                         )),
