@@ -1,4 +1,4 @@
-import 'package:assignment_one/core/utils/registration_form_fields.dart';
+import 'package:assignment_one/core/field_validator.dart';
 import 'package:assignment_one/presentation/registration/your_info_page.dart';
 import 'package:assignment_one/presentation/widgets/custom_button.dart';
 import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
@@ -66,7 +66,7 @@ class RegistrationPage extends GetView<RegistrationPageController> {
                     headingText: 'First Name*',
                     hintText: 'Enter your first name',
                     onValidate: (value) {
-                      if (YourName(value).isValid()) {
+                      if (InputFieldOne(value).isValid()) {
                         return null;
                       } else {
                         return 'First name is required';
@@ -85,7 +85,7 @@ class RegistrationPage extends GetView<RegistrationPageController> {
                     hintText: 'Please enter your last name',
                     onSave: (value) {},
                     onValidate: (value) {
-                      if (YourName(value).isValid()) {
+                      if (InputFieldOne(value).isValid()) {
                         return null;
                       } else {
                         return 'Last name is required';
@@ -190,9 +190,8 @@ class RegistrationPage extends GetView<RegistrationPageController> {
                   AppButtonOne(
                       buttomTitle: 'Next',
                       onPressed: () {
-                        if (controller.saveData()) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const YourInfo()));
+                        if (!controller.saveData()) {
+                          Get.to(const YourInfo());
                         }
                       })
                 ],

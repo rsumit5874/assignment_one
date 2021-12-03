@@ -1,15 +1,23 @@
+import 'package:assignment_one/core/constants.dart';
+import 'package:assignment_one/core/utils.dart';
 import 'package:assignment_one/presentation/registration/your_address_page.dart';
 import 'package:assignment_one/presentation/widgets/custom_button.dart';
 import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
+import 'package:assignment_one/view_models/info_page_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-class YourInfo extends StatelessWidget {
+class YourInfo extends GetView<YourInfo> {
   const YourInfo({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(YourInfoPageController());
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -50,31 +58,28 @@ class YourInfo extends StatelessWidget {
                   ),
                   CustomDropdownTextField(
                     key: const Key('education'),
-                    suffixIcon: const Icon(Icons.ten_k_rounded),
+                    listItem: qualification,
                     headingText: 'Education',
                     hintText: 'Select your qualification',
-                    onChange: (value) {},
-                    onSubmit: (value) {},
-                    inputType: TextInputType.text,
+                    onSelect: (value) {},
                   ),
                   CustomDropdownTextField(
                     key: const Key('passing_year'),
-                    suffixIcon: const Icon(Icons.ten_k_rounded),
+                    listItem: Utils.getList(),
                     headingText: 'Year of passing*',
                     hintText: 'Enter year of passing',
-                    onChange: (value) {},
-                    onSubmit: (value) {},
-                    inputType: TextInputType.text,
+                    onSelect: (value) {},
                   ),
-                  // CustomTextField(
-                  //   key: const Key('grade'),
-                  //   inputType: TextInputType.number,
-                  //   prefixIcon: const Icon(Icons.ten_k_rounded),
-                  //   headingText: 'Grade',
-                  //   hintText: 'Enter your grade OR percentage ',
-                  //   onChange: (value) {},
-                  //   onSubmit: (value) {},
-                  // ),
+                  CustomTextField(
+                    key: const Key('grade'),
+                    controller: TextEditingController(),
+                    inputType: TextInputType.number,
+                    prefixIcon: const Icon(Icons.ten_k_rounded),
+                    headingText: 'Grade',
+                    hintText: 'Enter your grade OR percentage ',
+                    onValidate: (value) {},
+                    onSave: (String) {},
+                  ),
                   SizedBox(
                     height: 20.h,
                   ),
@@ -83,32 +88,29 @@ class YourInfo extends StatelessWidget {
                     style:
                         TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                   ),
-                  // CustomTextField(
-                  //   key: const Key('experience'),
-                  //   inputType: TextInputType.number,
-                  //   prefixIcon: const Icon(Icons.ten_k_rounded),
-                  //   headingText: 'Experience*',
-                  //   hintText: 'Enter the year of experience',
-                  //   onChange: (value) {},
-                  //   onSubmit: (value) {},
-                  // ),
+                  CustomTextField(
+                    key: const Key('experience'),
+                    controller: TextEditingController(),
+                    inputType: TextInputType.number,
+                    prefixIcon: const Icon(Icons.ten_k_rounded),
+                    headingText: 'Experience*',
+                    hintText: 'Enter the year of experience',
+                    onValidate: (value) {},
+                    onSave: (value) {},
+                  ),
                   CustomDropdownTextField(
                     key: const Key('designation'),
-                    suffixIcon: const Icon(Icons.ten_k_rounded),
+                    listItem: designation,
                     headingText: 'Designation*',
                     hintText: 'Select designation',
-                    onChange: (value) {},
-                    onSubmit: (value) {},
-                    inputType: TextInputType.text,
+                    onSelect: (value) {},
                   ),
                   CustomDropdownTextField(
                     key: const Key('domain'),
-                    suffixIcon: const Icon(Icons.ten_k_rounded),
+                    listItem: domain,
                     headingText: 'Domain*',
                     hintText: 'Select your domain',
-                    onChange: (value) {},
-                    onSubmit: (value) {},
-                    inputType: TextInputType.text,
+                    onSelect: (value) {},
                   ),
                   SizedBox(
                     height: 20.h,

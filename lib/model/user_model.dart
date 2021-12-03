@@ -1,4 +1,4 @@
-import 'package:assignment_one/core/utils/enums.dart';
+import 'package:assignment_one/core/enums.dart';
 
 class UserModel {
   final String firstName;
@@ -7,7 +7,6 @@ class UserModel {
   final String email;
   final Gender gender;
   final String password;
-  final String confirmPassword;
   final UserAddress? userAddress;
   final UserEducationInfo? educationInfo;
 
@@ -17,7 +16,6 @@ class UserModel {
     this.phoneNum = '',
     this.email = '',
     this.gender = Gender.male,
-    this.confirmPassword = '',
     this.password = '',
     this.userAddress,
     this.educationInfo,
@@ -30,7 +28,6 @@ class UserModel {
     final String? email,
     final Gender? gender,
     final String? password,
-    final String? confirmPassword,
     final UserAddress? userAddress,
     final UserEducationInfo? educationInfo,
   }) {
@@ -42,8 +39,7 @@ class UserModel {
         gender: gender ?? this.gender,
         userAddress: userAddress ?? this.userAddress,
         educationInfo: educationInfo ?? this.educationInfo,
-        password: password ?? this.password,
-        confirmPassword: confirmPassword ?? this.confirmPassword);
+        password: password ?? this.password);
   }
 }
 
@@ -104,7 +100,7 @@ class UserEducationInfo {
     final String? domain,
   }) {
     return UserEducationInfo(
-      education: education! ?? education,
+      education: education!,
       yearOfPassing: yearOfPassing ?? this.yearOfPassing,
       grade: grade ?? this.grade,
       experience: experience ?? this.experience,

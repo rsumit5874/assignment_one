@@ -1,20 +1,20 @@
-import 'package:assignment_one/core/utils/extentions.dart';
-import 'package:assignment_one/core/utils/value_objects.dart';
+import 'package:assignment_one/core/extentions.dart';
+import 'package:assignment_one/core/value_objects.dart';
 
-class YourName extends ValueObjects<String> {
+class InputFieldOne extends ValueObjects<String> {
   @override
   bool isValid() => value.isNotEmpty && value.length > 3;
 
   @override
   final String value;
 
-  factory YourName(String? input) {
+  factory InputFieldOne(String? input) {
     assert(input != null);
 
-    return YourName._(input!);
+    return InputFieldOne._(input!);
   }
 
-  const YourName._(this.value);
+  const InputFieldOne._(this.value);
 }
 
 class EmailAddress extends ValueObjects<String> {

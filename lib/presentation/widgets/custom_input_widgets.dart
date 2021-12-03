@@ -141,22 +141,16 @@ class CustomPasswordField extends StatelessWidget {
 class CustomDropdownTextField extends StatelessWidget {
   final String headingText;
   final String hintText;
-  final Widget suffixIcon;
-  final TextInputType inputType;
-  final Function(String) onChange;
-  final Function(String) onSubmit;
-  final bool numberField;
+  final Function(String) onSelect;
   final TextEditingController? controller;
+  final List<String> listItem;
 
   const CustomDropdownTextField({
     Key? key,
     required this.headingText,
     required this.hintText,
-    required this.suffixIcon,
-    required this.inputType,
-    required this.onChange,
-    required this.onSubmit,
-    this.numberField = false,
+    required this.onSelect,
+    required this.listItem,
     this.controller,
   }) : super(key: key);
 
@@ -176,22 +170,23 @@ class CustomDropdownTextField extends StatelessWidget {
           height: 10.h,
         ),
         TextField(
-          maxLines: 1,
-          maxLength: numberField == true ? null : 10,
-          textInputAction: TextInputAction.next,
-          keyboardType: inputType,
-          onSubmitted: onSubmit,
           autofocus: false,
           textAlign: TextAlign.left,
-          onChanged: onChange,
           decoration: InputDecoration(
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(5),
             ),
-            counterText: '',
             contentPadding:
                 EdgeInsets.symmetric(vertical: 18.h, horizontal: 8.w),
-            suffixIcon: suffixIcon,
+            suffixIcon: PopupMenuButton<String>(
+              icon: const Icon(Icons.arrow_drop_down),
+              onSelected: onSelect,
+              itemBuilder: (BuildContext context) {
+                return listItem.map<PopupMenuItem<String>>((String value) {
+                  return PopupMenuItem(child: Text(value), value: value);
+                }).toList();
+              },
+            ),
             hintText: hintText,
           ),
           controller: controller,
