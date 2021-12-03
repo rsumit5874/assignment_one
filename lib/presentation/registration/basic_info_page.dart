@@ -1,5 +1,5 @@
 import 'package:assignment_one/core/field_validator.dart';
-import 'package:assignment_one/presentation/registration/your_info_page.dart';
+import 'package:assignment_one/presentation/registration/professional_info_page.dart';
 import 'package:assignment_one/presentation/widgets/custom_button.dart';
 import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
 import 'package:assignment_one/view_models/regisration_page_controller.dart';
@@ -10,8 +10,8 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
 
-class RegistrationPage extends GetView<RegistrationPageController> {
-  const RegistrationPage({Key? key}) : super(key: key);
+class BasicInfoPage extends GetView<RegistrationPageController> {
+  const BasicInfoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +196,7 @@ class RegistrationPage extends GetView<RegistrationPageController> {
                         buttomTitle: 'Next',
                         onPressed: () {
                           if (controller.saveData()) {
-                            Get.to(const YourInfo());
+                            Get.to(const ProfessionalInfoPage());
                           }
                         })
                   ],

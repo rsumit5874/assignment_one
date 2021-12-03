@@ -8,8 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-class AddressPage extends GetView<AddressPage> {
-  const AddressPage({Key? key}) : super(key: key);
+class AddressInfoPage extends GetView<AddressInfoPage> {
+  const AddressInfoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

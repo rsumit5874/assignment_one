@@ -1,6 +1,6 @@
 import 'package:assignment_one/core/constants.dart';
 import 'package:assignment_one/core/utils.dart';
-import 'package:assignment_one/presentation/registration/your_address_page.dart';
+import 'package:assignment_one/presentation/registration/address_info_page.dart';
 import 'package:assignment_one/presentation/widgets/custom_button.dart';
 import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
 import 'package:assignment_one/view_models/info_page_controller.dart';
@@ -12,8 +12,8 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_state_manager/src/simple/get_view.dart';
 
-class YourInfo extends GetView<YourInfo> {
-  const YourInfo({Key? key}) : super(key: key);
+class ProfessionalInfoPage extends GetView<ProfessionalInfoPage> {
+  const ProfessionalInfoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -158,7 +158,7 @@ class YourInfo extends GetView<YourInfo> {
                       key: const Key('previous-next-button'),
                       onNextPressed: () {
                         if (controller.saveData()) {
-                          Get.to(const AddressPage());
+                          Get.to(const AddressInfoPage());
                         }
                       },
                       onPreviousPressed: () {
