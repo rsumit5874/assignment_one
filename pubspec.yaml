@@ -37,6 +37,10 @@ dependencies:
   flutter_screenutil: ^5.0.0+2
   get: ^4.5.1
   dio: ^4.0.4
+  image_picker: ^0.8.4+4
+  image_cropper: ^1.4.1
+  permission_handler: ^8.3.0
+
 
 
 dev_dependencies:

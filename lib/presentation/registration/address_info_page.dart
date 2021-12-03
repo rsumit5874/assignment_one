@@ -2,7 +2,7 @@ import 'package:assignment_one/core/constants.dart';
 import 'package:assignment_one/core/field_validator.dart';
 import 'package:assignment_one/presentation/widgets/custom_button.dart';
 import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
-import 'package:assignment_one/view_models/address_page_controller.dart';
+import 'package:assignment_one/view_models/address_info_page_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';

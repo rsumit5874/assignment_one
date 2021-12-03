@@ -1,21 +1,26 @@
+import 'dart:io';
+
 import 'package:assignment_one/core/field_validator.dart';
+import 'package:assignment_one/core/image_picker_utils.dart';
 import 'package:assignment_one/presentation/registration/professional_info_page.dart';
+import 'package:assignment_one/presentation/widgets/custom_alert_dialogue.dart';
 import 'package:assignment_one/presentation/widgets/custom_button.dart';
 import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
-import 'package:assignment_one/view_models/regisration_page_controller.dart';
+import 'package:assignment_one/view_models/basic_info_page_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_instance/src/extension_instance.dart';
+import 'package:image_picker/image_picker.dart';
 
-class BasicInfoPage extends GetView<RegistrationPageController> {
+class BasicInfoPage extends GetView<BasicInfoPageController> {
   const BasicInfoPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(RegistrationPageController());
+    final controller = Get.put(BasicInfoPageController());
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -55,15 +60,51 @@ class BasicInfoPage extends GetView<RegistrationPageController> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Align(
-                      alignment: Alignment.topCenter,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey,
-                        radius: 40,
-                        child: IconButton(
-                            onPressed: () {},
-                            icon: const Icon(CupertinoIcons.add)),
-                      ),
-                    ),
+                        alignment: Alignment.topCenter,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.grey,
+                          radius: 45,
+                          child: GestureDetector(
+                            onTap: () async {
+                                final imageSrcPath = await ImagePickerUtil
+                                    .instance
+                                    .getCompressedImage(
+                                        source: ImageSource.gallery);
+                                if (imageSrcPath.isNotEmpty) {
+                                  //show image
+                                  print(imageSrcPath);
+                                  controller.pickImage(imageSrcPath);
+                                }
+
+                              // final PermissionStatus status =
+                              //     await Permission.camera.request();
+                              // if (status.isGranted) {
+                              //   final imageSrcPath = await ImagePickerUtil
+                              //       .instance
+                              //       .getCompressedImage(
+                              //           source: ImageSource.gallery);
+                              //   if (imageSrcPath.isNotEmpty) {
+                              //     //show image
+                              //     controller.pickImage(imageSrcPath);
+                              //   }
+                              // } else if (status.isDenied) {
+                              //   await Permission.camera.request();
+                              // } else {
+                              //   showDialog(
+                              //       context: context,
+                              //       builder: (context) =>
+                              //           const PermissionHandleDialog());
+                              // }
+                            },
+                            child: CircleAvatar(
+                              radius: 42.r,
+                              backgroundImage: Image.file(
+                                File(controller.profileImagePath.value),
+                                fit: BoxFit.cover,
+                              ).image,
+                            ),
+                          ),
+                        )),
                     CustomTextField(
                       key: const Key('first-name'),
                       prefixIcon: const Icon(Icons.ten_k_rounded),

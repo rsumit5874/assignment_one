@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class YourInfoPageController extends GetxController {
+class ProfessionalPageController extends GetxController {
   final GlobalKey<FormState> yourInfoFormKey = GlobalKey<FormState>();
   late TextEditingController educationController,
       yearOfPassingController,

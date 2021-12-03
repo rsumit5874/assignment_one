@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
-class RegistrationPageController extends GetxController {
+class BasicInfoPageController extends GetxController {
   final _userModel = UserModel().obs;
   final GlobalKey<FormState> registrationFormKey = GlobalKey<FormState>();
   late TextEditingController fNameController,
@@ -13,12 +13,17 @@ class RegistrationPageController extends GetxController {
       confirmPasswordController,
       phoneNumberController;
 
-
   var isPassWord = false.obs;
+
   showPass(bool value) => isPassWord.value = value;
 
   var selectedRadio = 1.obs;
+
   switchRadioButton(int value) => selectedRadio.value = value;
+
+  var profileImagePath = ''.obs;
+
+  pickImage(String imagePath) => profileImagePath.value = imagePath;
 
   @override
   void onInit() {

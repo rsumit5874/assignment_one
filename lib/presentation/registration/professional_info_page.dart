@@ -3,7 +3,7 @@ import 'package:assignment_one/core/utils.dart';
 import 'package:assignment_one/presentation/registration/address_info_page.dart';
 import 'package:assignment_one/presentation/widgets/custom_button.dart';
 import 'package:assignment_one/presentation/widgets/custom_input_widgets.dart';
-import 'package:assignment_one/view_models/info_page_controller.dart';
+import 'package:assignment_one/view_models/professional_info_page_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -17,7 +17,7 @@ class ProfessionalInfoPage extends GetView<ProfessionalInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(YourInfoPageController());
+    final controller = Get.put(ProfessionalPageController());
 
     return Scaffold(
         backgroundColor: Colors.white,
